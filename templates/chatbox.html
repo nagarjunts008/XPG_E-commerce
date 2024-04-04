@@ -1,0 +1,142 @@
+{% load static %}
+{% static "img" as baseUrl %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link href="{% static 'css/chatbox.css' %}" rel="stylesheet">
+    <script src="{% static 'js/chatbox.js' %}"></script>
+    <title>Hello, world!</title>
+
+    <style>
+        .open-button {
+            background-color: #52b16b;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 2px;
+            right: 120px;
+            height: 60px;
+            width: 200px;
+          }
+        </style>
+  </head>
+  <body>
+    
+    <a href="#" class="open-button" id="addClass"><h4 style="text-align: center;">Chat</h4></a>
+            
+    
+    <aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar">
+    
+    <div class="popup-head">
+                    <div class="popup-head-left pull-left"><a Design and Developmenta title="Gurdeep Osahan (Web Designer)" target="_blank" href="https://web.facebook.com/iamgurdeeposahan">
+    <img class="md-user-image" alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" title="Gurdeep Osahan (Web Designer)" alt="Gurdeep Osahan (Web Designer)">
+    <h1>Mohan Ganesh</h1><small><br> <span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span> Web Designer</small></a></div>
+                          <div class="popup-head-right pull-right">
+                            <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i class="glyphicon glyphicon-remove"></i></button>
+                          </div>
+                  </div>
+    
+    <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active" style="opacity: 1; display: block; transform: translateX(0px);">
+                            <div class="chat_box touchscroll chat_box_colors_a">
+                                <div class="chat_message_wrapper">
+                                    <div class="chat_user_avatar">
+                                        <a href="https://web.facebook.com/iamgurdeeposahan" target="_blank" >
+                                        <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)"  src="http://webncc.in/img/user/gurdeep-singh-osahan.jpg" class="md-user-image">
+                                        </a>
+                                    </div>
+                                    <ul class="chat_message">
+                                        <li>
+                                            <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio, eum? </p>
+                                        </li>
+                                        <li>
+                                            <p> Lorem ipsum dolor sit amet.<span class="chat_message_time">13:38</span> </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="chat_message_wrapper chat_message_right">
+                                    <div class="chat_user_avatar">
+                                    <a href="https://web.facebook.com/iamgurdeeposahan" target="_blank" >
+                                        <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="md-user-image">
+                                    </a>
+                                    </div>
+                                    <ul class="chat_message">
+                                        <li>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem delectus distinctio dolor earum est hic id impedit ipsum minima mollitia natus nulla perspiciatis quae quasi, quis recusandae, saepe, sunt totam.
+                                                <span class="chat_message_time">13:34</span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="chat_message_wrapper">
+                                    <div class="chat_user_avatar">
+                                    <a href="https://web.facebook.com/iamgurdeeposahan" target="_blank" >
+                                        <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="http://webncc.in/img/user/gurdeep-singh-osahan.jpg" class="md-user-image">
+                                    </a>
+                                    </div>
+                                    <ul class="chat_message">
+                                        <li>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque ea mollitia pariatur porro quae sed sequi sint tenetur ut veritatis.https://www.facebook.com/iamgurdeeposahan
+                                                <span class="chat_message_time">23 Jun 1:10am</span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="chat_message_wrapper chat_message_right">
+                                    <div class="chat_user_avatar">
+                                    <a href="https://web.facebook.com/iamgurdeeposahan" target="_blank" >
+                                        <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)" src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg" class="md-user-image">
+                                    </a>
+                                    </div>
+                                    <ul class="chat_message">
+                                        <li>
+                                            <p> Lorem ipsum dolor sit amet, consectetur. </p>
+                                        </li>
+                                        <li>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                                <span class="chat_message_time">Friday 13:34</span>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+    <div class="chat_submit_box">
+        <div class="uk-input-group">
+            <div class="gurdeep-chat-box">
+            <input type="text" placeholder="Type a message" id="submit_message" name="submit_message" class="md-input">
+            </div>
+            <span class="uk-input-group-addon">
+            <a href="#"><i class="glyphicon glyphicon-send"></i></a>
+            </span>
+        </div>
+    </div>
+            
+            </div>
+
+
+            
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

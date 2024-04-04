@@ -1,0 +1,406 @@
+{% load static %}
+{% static "img" as baseUrl %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>XProjectGallery</title>
+  <link rel="icon" href="{% static 'img/JPEG-White-Version-Without-Slogan.jpg' %}">
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static '/vendor/jquery/jquery-1.11.1.min.js' %}"></script>
+  <script src="{% static '/vendor/jquery/jquery.min.js' %}"></script>
+
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/footer.css' %}" rel="stylesheet">
+  <link href="{% static 'css/search-bar.css' %}" rel="stylesheet">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.css" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" rel="stylesheet" type="text/css">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" rel="stylesheet" type="text/css">
+
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.css" rel="stylesheet" type="text/css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css" rel="stylesheet" type="text/css">
+
+
+  <style type="text/css">
+    @media only screen and (max-width: 768px) {
+      .card-img-top {
+        width: 100%;
+        height: 80vw;
+        object-fit: cover;
+        
+      }
+  
+      .card-columns {
+        column-count: 1;
+        
+      }
+  
+      .fixed-top-2 {
+        margin-top: 75px;
+      }
+  
+      body {
+          padding-top: 105px;
+      }
+  
+      .navbar-header {
+        float: left;
+        text-align: center;
+        width: 100%;
+      }
+  
+      .navbar-brand {
+        float:none;
+      }
+    }
+  
+    @media only screen and (min-width: 768px) {
+      .card-img-top {
+        width: 100%;
+        height: 100vw;
+        object-fit: cover;
+      }
+    
+      .card-columns {
+        column-count: 3;
+      }
+    
+      .fixed-top-2 {
+        margin-top: 75px;
+      }
+    
+      body {
+          padding-top: 105px;
+      }
+    
+      .navbar-header {
+        float: left;
+        text-align: center;
+        width: 100%;
+      }
+      .navbar-brand {
+        float:none;
+      }
+    } 
+  
+    @media only screen and (min-width: 1024px) {
+      /* For desktop: */
+    .card-img-top {
+      width: 100%;
+      height: 10vw;
+      object-fit: cover;
+      
+    }
+    
+    .card-columns {
+      column-count: 5;
+    }
+
+    .card-columns-2{
+      column-count: 2;
+    }
+
+    .card-columns-3{
+      column-count: 3;
+    }
+
+    .card-columns-4{
+      column-count: 4;
+    }
+  
+    .card-columns-5{
+      column-count: 5;
+    }
+
+    .fixed-top-2 {
+      margin-top: 80px;
+    }
+    
+    body {
+        padding-top: 105px;
+    }
+  
+    .navbar-header {
+      float: left;
+      padding: 8px;
+      text-align: center;
+      width: 100%;
+    }
+    .navbar-brand {
+      float:none;
+    }
+  
+    .main{
+      min-height: 100vh;
+      height: 100%;
+    }
+  }
+      
+  
+  
+    .img-fluid{
+      max-width: 100%;
+      height: 100%;
+      display:  block;
+    }
+    
+    .zoom {
+      padding: 5px;
+      transition: transform .5s;
+      width: 300px;
+      height: 300px;
+      margin: 0 auto;
+    }
+    
+    .zoom:hover {
+      -ms-transform: scale(1.05); /* IE 9 */
+      -webkit-transform: scale(1.05); /* Safari 3-8 */
+      transform: scale(1.05); 
+    }
+  
+    .hoverimage {
+      opacity: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: .5s ease;
+      backface-visibility: hidden;
+    }
+  
+    .middle {
+      transition: .5s ease;
+      opacity: 0;
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    
+    .container:hover .hoverimage {
+      opacity: 0.3;
+    }
+    
+    .container:hover .middle {
+      opacity: 1;
+    }
+    
+    .hoverdownimage {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    
+    .overlay {
+      opacity: 50%;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background-color: rgb(238, 176, 41);
+      overflow: hidden;
+      width: 100%;
+      height: 0;
+      transition: 0.8s ease;
+    }
+    
+    .container:hover .overlay {
+      height: 100%;
+    }
+  
+    .overlaytext {
+      color: white;
+      font-size: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+  </style>
+  
+  
+</head>
+
+<body>
+{% if user.is_authenticated %}
+  <!-- Navigation -->
+  <nav class="navbar navbar-light fixed-top" style="background-color: #ffffff;">
+    <div class="container">
+      <div class="navbar-header">
+      <a class="navbar-brand" href="/xpg/home">
+        <div class="row">
+          <img src="{% static 'img/JPEG-White-Version-Without-Slogan.jpg' %}" width="40" height="40" class="d-inline-block align-top" alt=""><p style="font-size: 30px; color:#78b1de"><b>ProjectGallery</b></p>
+      </div>
+      </a>
+    </div> 
+    </div>
+  </nav>
+
+
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top fixed-top-2" style="background-color: #292929;">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'profile' user %}"><p style="font-size: 20px; padding-top: 5px;"><span style='color: rgb(255, 145, 0)'>Hello, </span>{{user}}</p></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/xpg/home">Home
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Projects
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/xpg/xproject">Xtraordinary Projects</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/xpg/ec">Electronics</a>
+              <a class="dropdown-item" href="/xpg/cs">Computer Science</a>
+              <a class="dropdown-item" href="/xpg/me">Mechanical</a>
+              <a class="dropdown-item" href="/xpg/ee">Electrical</a>
+              <a class="dropdown-item" href="/xpg/tc">Telecomminication</a>
+              <a class="dropdown-item" href="/xpg/mel">Medical Electronics</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/xpg/other">Others</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cart' user %}">My Cart</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'order' user %}">My Orders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/xpg/logout">logout</a>
+          </li>
+          <li class="nav-item" style="padding-top: 20px; padding-left: 140px;">
+            <form>
+              <div class="search-box">
+                <input class="search-txt" type="text" name="" placeholder="  Type to search">
+                <a class="search-btn" href="#">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </a>
+              </div>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<!-- end Navigation -->
+
+
+
+
+<!-- Body -->
+
+<div class="main">
+	{% block content %}
+  
+	{% endblock content %}
+</div>
+<!-- End Body -->
+
+
+
+
+
+
+<!-- Footer -->
+  <div class="footer-bottom-area bg-dark-light section-padding-sm" style="padding-bottom: 20px;">
+    <div class="container">
+        <div class="row widgets footer-widgets">
+
+            <div class="col-lg-3 col-md-6 col-12">
+              <br>
+                <div class="single-widget widget-about">
+                    <h5 class="widget-title">About Us</h5>
+                    <img src="{% static 'img/JPEG-White-Version-Without-Slogan.jpg' %}" width="80" height="80" alt="about widget image">
+                    <p>We are a team of designers and developers that create high quality <a href="/xpg/about">Readmore...</a></p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12">
+              <br>
+                <div class="single-widget widget-quick-links">
+                    <h5 class="widget-title">My Account</h5>
+                    <ul>
+                        <li><a class="nav-link" href="{% url 'profile' user %}">Profile</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12">
+              <br>
+                <div class="single-widget widget-quick-links">
+                    <h5 class="widget-title">Customer Service</h5>
+                    <ul>
+                        <li><a class="nav-link" href="/xpg/about">About Us</a></li>
+                        <li><a class="nav-link" href="/xpg/help">Help</a></li>
+                        <li><a class="nav-link" href="/xpg/services">Consultancy Developer</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6 col-12">
+              <br>
+                <div class="single-widget widget-contact">
+                    <h5 class="widget-title">Contact Us</h5>
+                    <ul>
+                        <li class="address">
+                            <span class="icon"><i class="fa fa-map-marker"></i></span>
+                            <p>Address : AM Palya Road, 2nd cross, Sira Gate Tumkur-572106</p>
+                        </li>
+                        <li class="phone">
+                            <span class="icon"><i class="fa fa-phone"></i></span>
+                            <p><a href="#">+91 8310 24 1625</a></p>
+                        </li>
+                        <li class="fax">
+                            <span class="icon"><i class="fa fa-fax"></i></span>
+                            <p><a href="#">+91 9448 70 2175</a></p>
+                        </li>
+                        <li class="email">
+                            <span class="icon"><i class="fa fa-envelope-o"></i></span>
+                            <p><a href="#">ganeshn944870@gmail.com</a></p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+   <!-- end Footer -->
+
+{% else %}
+  {% include "unathorized.html" %}
+{% endif %}
+   
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'vendor/jquery/jquery.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
+  
+  </body>
+</html>

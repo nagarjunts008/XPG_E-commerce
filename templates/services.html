@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% static "img" as baseUrl %}
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>ProProject</title>
+
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/shop-homepage.css'%}" rel="stylesheet">
+  <link href="{% static 'vendor/bootstrap/font/about-font.css'%}" rel='stylesheet'>
+  <link href="{% static 'css/services.css'%}" rel='stylesheet'>
+
+</head>
+
+<body>
+  <br><br><br><br>
+  <div class="container">
+    <br>
+    <h2>Consultancy Developer</h2><br>
+  <div class="row">
+
+    {% for dmember in dmembers%}
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+      <div class="our-services-wrapper mb-60">
+        <div class="services-inner">
+          <div class="our-services-img">
+          <img src="{{dmember.img.url}}" width="68px" alt="">
+          </div>
+          <div class="our-services-text">
+            <div class="container">
+            <h4>{{dmember.name}}</h4>
+            <p>{{dmember.contact}}</p>
+            <p>{{dmember.gmail}}</p>
+            <p>{{dmember.desc}}</p>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+
+
+</body>
+
+{% endblock %}

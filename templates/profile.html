@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% static "img" as baseUrl %}
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>XcellenceProjectGallery</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet" id="bootstrap-css">
+  <link href="{% static 'css/shop-homepage.css'%}" rel="stylesheet">
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/jquery/jquery.min.js'%}"></script>
+  <link rel="stylesheet" href="{% static 'css/index.css'%}">
+
+</head>
+
+<body>
+  <br><br><br>
+    <div class="container login-container">
+     
+        <div class="row">
+
+            <div class="col-md-12 login-form-1">
+                <h3>Edit Profile</h3>
+                <form action="{% url 'update_profile' user %}" method="POST">
+                    {%csrf_token%}
+                    <div class="form-group">
+                      <label>Username</label>
+                      <input type="text" class="form-control" placeholder="{{x.u.username}}" value="{{x.u.username}}" name="user_name"/>
+                    </div>
+                    <div class="form-group">
+                      <label>First Name</label>
+                      <input type="text" class="form-control" placeholder="{{x.u.email}}" value="{{x.u.first_name}}" name="first_name"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Last Name</label>
+                      <input type="text" class="form-control" placeholder="{{x.u.email}}" value="{{x.u.last_name}}" name="last_name"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input type="text" class="form-control" placeholder="{{x.u.email}}" value="{{x.u.email}}" name="email"/>
+                    </div>
+                    <div class="form-group">
+                      <label>Phone</label>
+                      <input type="text" class="form-control" placeholder="{{x.p.phone}}" value="{{x.p.phone}}" name="phone"/>
+                    </div>
+                      
+                      <input type="submit" class="btn btn-primary" value="submit" style="float: left;/> <br><br> 
+                </form>
+
+            {% for message in messages %}
+            <h5 style="color: brown; text-align: center;">{{message}}</h5>
+            {% endfor %}
+     </div>
+     </div>
+    </div>
+
+    <br><br><br>
+    <div class="container">
+      <a href="{% url 'password_change' %}"><button type="button" class="btn btn-warning" style="float: right;">Change Password</button></a><br><br>
+      <a href="{% url 'account_delete' user %}"><button type="button" class="btn btn-danger" style="float: right;">Delete Account</button></a>
+    </div>
+  </div>
+</div>
+ 
+</body>
+{% endblock %}

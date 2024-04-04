@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% static "img" as baseUrl %}
+<br>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>XcellenceProjectGallery</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.min.js'%}"></script>
+  <script src="{% static 'vendor/bootstrap/jquery/3.2.1/jquery.min.js'%}"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link rel="stylesheet" href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'%}">
+
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/shop-homepage.css'%}" rel="stylesheet">
+  <link href="{% static 'css/buy.css'%}" rel="stylesheet">
+</head>
+
+<body>
+<br><br><br>
+<div class="container">
+    <div class="card-body">
+        {% if user.is_authenticated %}
+          <div class="card shopping-cart">
+                    <div class="card-body">
+                            <!-- PRODUCT -->
+                            {% for product in carts%}
+                              <div class="row">
+                                <div class="col-12 col-sm-12 col-md-2 text-center">
+                                        <img class="img-responsive" src="{{product.img.url}}" alt="prewiew" width="120" height="80">
+                                </div>
+                                <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                                    <h4 class="product-name"><strong>{{product.productname}}</strong></h4>
+                                    <h6>{{product.desc}}</h6>
+                                </div>
+                                <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                                  <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+                                    <h4>Price:{{product.price}}₹</h4>
+                                    <h6>{{product.pcategory}}</h6>
+                                  </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+      
+                            <!-- END PRODUCT -->
+                    </div>
+                    <br>
+                </div>
+      <br>
+      {% endif %}
+   </div>
+</div>
+
+
+<div class="container">
+	<div class="row justify-content-center">
+      <div class="card bg-default mainbox col-lg-6 col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="card-header thin-card-header">
+            <div class="card-title">
+                <ul class="card-toolbar">
+                    <li class="float-left">
+                        <h4 style="font-family:Poppins, sans-serif"><i class="fa fa-map-marker"></i> Address</h4>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <br>
+
+
+        <div class="card-body">
+          
+          <input type="submit" class="btn btn-primary" value="Use Current Loacation" onclick="getLocation()">
+            <p id="demo"></p>
+
+            <script>
+            var x = document.getElementById("demo");
+
+            function getLocation() {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+              } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+                $.ajax({
+                  url: "{% url 'pyfoo' %}",
+                  type: 'GET',
+                  data: {'latitude': position.coords.latitude, 'longitude': position.coords.longitude},
+                  success: function(){
+                    x.innerHTML ="Done"
+                  }
+                })
+              }
+            }
+
+            function showPosition(position) {
+              x.innerHTML = "Latitude: " + position.coords.latitude + 
+              "<br>Longitude: " + position.coords.longitude;
+
+
+            }
+            </script>
+
+
+          
+          
+          <form action="{% url 'buy' user user.id %}" method="POST">
+            {%csrf_token%}
+            {% for product in carts%}
+              <input type="hidden" name="productimg" value="{{product.img}}" class="form-control">
+              <input type="hidden" name="productuname" value="{{product.Username}}" class="form-control">
+              <input type="hidden" name="productid" value="{{product.id}}" class="form-control">
+              <input type="hidden" name="productname" value="{{product.productname}}" class="form-control">
+              <input type="hidden" name="productdesc" value="{{product.desc}}" class="form-control">
+              <input type="hidden" name="productprice" value="{{product.price}}" class="form-control">
+              <input type="hidden" name="pcategory" value="{{product.pcategory}}" class="form-control">
+
+              <input type="hidden" name="country" class="form-control" value="">
+              <input type="hidden" name="state" class="form-control" value="">
+              <input type="hidden" name="city" class="form-control" value="">
+              <input type="hidden" name="address1" class="form-control" value="">
+              <input type="hidden" name="address2" class="form-control" value="">
+              <input type="hidden" name="postcode" class="form-control" value="0">
+
+             
+
+              <div class="form-group text-center">
+                <input type="submit" class="btn btn-warning" value="Submit" onclick="getLocation()" id="demo">
+                <br><br><h4>---------- Or ---------</h4>
+              </div>
+            {% endfor %}
+          </form> 
+        </div>
+    
+
+        <div class="card-body">
+        <!--<form action="/xpg/buy" method="POST">-->
+          <form action="{% url 'buy' user user.id %}" method="POST">
+            {%csrf_token%}
+            {% for product in carts%}
+
+
+                  <div class="form-group">
+                    <label class="control-label" for="textinput">Country</label>
+                    <!-- <input type="text" placeholder="Country" name="country" class="form-control"> -->
+                    <select id="country" type="text" placeholder="Country" name="country" class="form-control">
+                      <option value="India">India</option>
+                    </select>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label class="control-label" for="textinput">State</label>
+                    <!-- <input type="text" placeholder="State" name="state" class="form-control"> -->
+                    <select id="state" type="text" placeholder="state" name="state" class="form-control">
+                      <option value="karnataka">Karnataka</option>
+                    </select>
+                  </div>
+                    
+
+                  <div class="form-group">
+                    <label class="control-label" for="textinput">City</label>
+                    <!-- <input type="text" placeholder="City" name="city" class="form-control"> -->
+                    <select id="city" type="text" placeholder="city" name="city" class="form-control">
+                      <option value="Bangalore">Bangalore</option>
+                      <option value="Tumkuru">Tumkuru</option>
+                    </select>
+                  </div>
+                    
+                  
+                    
+                  <div class="form-group">
+                    <label class="control-label" for="textinput">Line 1</label>
+                    <input type="text" placeholder="Address Line 1" name="address1" class="form-control">
+                  </div>
+                    
+                  <div class="form-group">
+                    <label class="control-label" for="textinput">Line 2</label>
+                    <input type="text" placeholder="Address Line 2" name="address2" class="form-control">
+                  </div>
+
+                    
+                  <div class="form-group">
+                    <label class="control-label" for="textinput">Postcode</label>
+                    <input type="text" placeholder="Post Code" name="postcode" class="form-control">
+                  </div>
+                    
+                  <div class="form-group">
+                    <input type="hidden" name="productimg" value="{{product.img}}" class="form-control">
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="hidden" name="productuname" value="{{product.Username}}" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="hidden" name="productid" value="{{product.id}}" class="form-control">
+                  </div>
+                  
+                  <div class="form-group">
+                    <input type="hidden" name="productname" value="{{product.productname}}" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="hidden" name="productdesc" value="{{product.desc}}" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="hidden" name="productprice" value="{{product.price}}" class="form-control">
+                  </div>
+
+                  <div class="form-group">
+                    <input type="hidden" name="pcategory" value="{{product.pcategory}}" class="form-control">
+                  </div>
+
+                  <div class="form-group text-right">
+                    <input type="submit" class="btn btn-info" value="Submit">
+                  </div>
+               
+            {% endfor %}
+          </form>
+        </div>
+      </div>
+	</div>
+</div>
+
+<br>
+
+
+</body>
+{% endblock %} 

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+{% static "img" as baseUrl %}
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>XcellenceProjectGallery</title>
+
+
+<script src="https://use.fontawesome.com/c560c025cf.js"></script>
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/shop-homepage.css'%}" rel="stylesheet">
+  <link href="{% static 'css/cart.css' %}" rel="stylesheet">
+
+</head>
+
+<body>
+<br>
+
+<br><br><br>
+{% if user.is_authenticated %}
+<div class="container">
+    <div class="card shopping-cart">
+             <div class="card-header bg-dark text-light">
+                 <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                 Shipping cart
+                 <a href="{% url 'home' %}" class="btn btn-outline-info btn-sm pull-right">Continue shopping</a>
+                 <div class="clearfix"></div>
+             </div>
+             <div class="card-body">
+                     <!-- PRODUCT -->
+                     {% for product in cart%}
+                        <div class="row">
+                         <div class="col-12 col-sm-12 col-md-2 text-center">
+                                 <img class="img-responsive" src="{{product.img.url}}" alt="prewiew" width="120" height="80">
+                         </div>
+                         <div class="col-12 text-sm-center col-sm-12 text-md-left col-md-6">
+                             <h4 class="product-name"><strong>{{product.Username}}{{product.productname}}</strong></h4>
+                             <h4>
+                                 <small>{{product.desc}}</small>
+                             </h4>
+                         </div>
+                         <div class="col-12 col-sm-12 text-sm-center col-md-4 text-md-right row">
+                             <div class="col-3 col-sm-3 col-md-6 text-md-right" style="padding-top: 5px">
+                              <h4>₹{{product.price}}</h4>
+                             </div>
+                             <div class="col-4 col-sm-4 col-md-4">
+                                 <div class="quantity">
+                                     <a href="{% url 'address' user product product.id %}"><button type="button" class="btn btn-warning">BUY</button></a>
+                                 </div>
+                             </div>
+                             <div class="col-2 col-sm-2 col-md-2 text-right">
+                                 <button type="button" class="btn btn-outline-danger btn-xs">
+                                  <a href="{% url 'cart_delete' user product product.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                 </button>
+                             </div>
+                         </div>
+                     </div>
+                     <hr>
+                      
+                     {% endfor %}
+
+                     <!-- END PRODUCT -->
+             </div>
+             <br>
+         </div>
+ </div>
+<br>
+{% endif %}
+
+
+  </body>
+  {% endblock %}
